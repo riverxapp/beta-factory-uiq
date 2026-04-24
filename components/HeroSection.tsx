@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Triangle } from "lucide-react";
+import { Rocket } from "lucide-react";
 
 const hero = {
   heading: "To get started, chat with AI.",
@@ -9,8 +9,8 @@ const hero = {
   hintBetween: " or the ",
   hintBold2: "Learning",
   hintAfter: " center.",
-  primaryCta: "Deploy Now",
-  secondaryCta: "Documentation",
+  primaryCta: "Get Started",
+  secondaryCta: "Learn More",
 };
 
 export const HeroSection = () => {
@@ -31,7 +31,7 @@ export const HeroSection = () => {
       </p>
       <div className="mt-8 flex items-center gap-4">
         <Button className="h-11 gap-2 rounded-lg px-5">
-          <Triangle className="h-3.5 w-3.5 fill-current" />
+          <Rocket className="h-3.5 w-3.5" />
           {hero.primaryCta}
         </Button>
         <Button variant="outline" className="h-11 rounded-lg px-5">

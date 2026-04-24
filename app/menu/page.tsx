@@ -123,20 +123,18 @@ export default function MenuPage() {
           Ready to order? Visit us or call ahead for reservations.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <Button size="lg">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="default" size="lg" className="gap-2">
-                  Order Now <ChevronDown className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem>Dine In</DropdownMenuItem>
-                <DropdownMenuItem>Takeout</DropdownMenuItem>
-                <DropdownMenuItem>Delivery</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="default" size="lg" className="gap-2">
+                Order Now <ChevronDown className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem>Dine In</DropdownMenuItem>
+              <DropdownMenuItem>Takeout</DropdownMenuItem>
+              <DropdownMenuItem>Delivery</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <Button variant="outline" size="lg">
             Make a Reservation
           </Button>

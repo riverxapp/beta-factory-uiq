@@ -1,3 +1,4 @@
+```ts
 import { createClient } from "@/lib/db";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -35,3 +36,4 @@ export async function signIn(email: string, password: string): Promise<boolean> 
   const { error } = await db.from("sessions").insert({ userId: data.id });
   return !error;
 }
+```

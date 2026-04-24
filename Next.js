@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -21,8 +21,11 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import { useRouter } from "next/navigation";
 
 export default function DashboardPage() {
+  const router = useRouter();
+
   return (
     <div className="flex min-h-screen flex-col bg-muted/40">
       <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
@@ -36,19 +39,19 @@ export default function DashboardPage() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push("/contacts/new")}>
                 <Users className="mr-2 h-4 w-4" />
                 Add Contact
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push("/deals/new")}>
                 <Briefcase className="mr-2 h-4 w-4" />
                 New Deal
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push("/tasks/new")}>
                 <CheckCircle2 className="mr-2 h-4 w-4" />
                 Create Task
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push("/contacts/new")}>
                 <Activity className="mr-2 h-4 w-4" />
                 Schedule Meeting
               </DropdownMenuItem>
@@ -190,19 +193,19 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <div className="grid gap-2">
-                  <Button variant="outline" className="justify-start gap-2">
+                  <Button variant="outline" className="justify-start gap-2" onClick={() => router.push("/contacts/new")}>
                     <Users className="h-4 w-4" />
                     Add Contact
                   </Button>
-                  <Button variant="outline" className="justify-start gap-2">
+                  <Button variant="outline" className="justify-start gap-2" onClick={() => router.push("/deals/new")}>
                     <Briefcase className="h-4 w-4" />
                     New Deal
                   </Button>
-                  <Button variant="outline" className="justify-start gap-2">
+                  <Button variant="outline" className="justify-start gap-2" onClick={() => router.push("/tasks/new")}>
                     <CheckCircle2 className="h-4 w-4" />
                     Create Task
                   </Button>
-                  <Button variant="outline" className="justify-start gap-2">
+                  <Button variant="outline" className="justify-start gap-2" onClick={() => router.push("/contacts/new")}>
                     <Activity className="h-4 w-4" />
                     Schedule Meeting
                   </Button>

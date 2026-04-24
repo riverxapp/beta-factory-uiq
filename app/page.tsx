@@ -1,4 +1,3 @@
-```tsx
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -127,7 +126,7 @@ export default function DashboardPage() {
                     <div key={i} className="flex items-center gap-4">
                       <Avatar className="h-8 w-8">
                         <AvatarImage
-                          src={`https://avatar.vercel.sh/${activity.name}`}
+                          src={`http://avatar.vercel.sh/${activity.name}`}
                           alt={activity.name}
                         />
                         <AvatarFallback>
@@ -186,4 +185,3 @@ export default function DashboardPage() {
     </div>
   );
 }
-```

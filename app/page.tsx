@@ -1,3 +1,5 @@
+"use client"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -13,6 +15,12 @@ import {
   ArrowUpRight,
   Activity,
 } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 
 export default function DashboardPage() {
   return (
@@ -20,10 +28,32 @@ export default function DashboardPage() {
       <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
         <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
           <div className="flex-1" />
-          <Button size="sm" className="gap-1">
-            <Plus className="h-4 w-4" />
-            Quick Action
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button size="sm" className="gap-1">
+                <Plus className="h-4 w-4" />
+                Quick Action
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem>
+                <Users className="mr-2 h-4 w-4" />
+                Add Contact
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Briefcase className="mr-2 h-4 w-4" />
+                New Deal
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <CheckCircle2 className="mr-2 h-4 w-4" />
+                Create Task
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Activity className="mr-2 h-4 w-4" />
+                Schedule Meeting
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </header>
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

@@ -8,11 +8,12 @@ RUN apt-get update \
 
 RUN corepack enable && corepack prepare pnpm@10.26.2 --activate
 
-COPY package.json ./
-RUN rm -rf node_modules && pnpm run dev
+COPY package.json pnpm-lock.yaml ./
+RUN rm -rf node_modules && pnpm install
 
 COPY . .
 
 EXPOSE 3000
+ENV NEXT_DEV=true
 
 CMD ["node", "scripts/dev-supervisor.js"]

@@ -17,9 +17,13 @@
       }
     },
     "steps": {
-      "install": {
+      "run": {
         "caches": ["pnpm-store", "next-cache", "apt"],
-        "commands": ["pnpm install --prefer-offline --no-frozen-lockfile"]
+        "commands": ["pnpm run start"]
+      },
+      "run:dev": {
+        "caches": ["pnpm-store", "next-cache", "apt"],
+        "commands": ["pnpm run dev"]
       }
     }
   }

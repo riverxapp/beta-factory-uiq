@@ -1,6 +1,6 @@
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 
-const brandName = "Panda";
+const brandName = "Acme Inc.";
 
 export const Navbar = () => {
   return (

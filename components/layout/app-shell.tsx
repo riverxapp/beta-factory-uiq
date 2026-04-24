@@ -1,5 +1,8 @@
 "use client";
 
+import { Sidebar } from "@/components/layout/sidebar";
+import { Topbar } from "@/components/layout/topbar";
+
 interface AppShellProps {
   children: React.ReactNode;
 }

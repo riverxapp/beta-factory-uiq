@@ -1,3 +1,4 @@
+```javascript
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
@@ -207,3 +208,4 @@ if (lastError?.output) {
   console.error(lastError.output.trim().slice(-2000));
 }
 throw lastError ?? new Error("Migration failed after retry limit");
+```

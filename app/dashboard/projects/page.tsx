@@ -1,4 +1,3 @@
-```tsx
 "use client";
 
 import { useState } from "react";
@@ -14,6 +13,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Plus, Search, MoreHorizontal } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertCircle } from "lucide-react";
 
 interface Project {
   id: string;
@@ -39,7 +41,7 @@ const priorityColors: Record<string, string> = {
 };
 
 export default function ProjectsPage() {
-  const [projects] = useState<Project[]>([
+  const [projects, setProjects] = useState<Project[]>([
     {
       id: "1",
       name: "Website Redesign",
@@ -95,6 +97,41 @@ export default function ProjectsPage() {
       progress: 50,
     },
   ]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  if (error) {
+    return (
+      <Alert variant="destructive">
+        <AlertCircle className="h-4 w-4" />
+        <AlertTitle>Error</AlertTitle>
+        <AlertDescription>{error}</AlertDescription>
+      </Alert>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="space-y-6 p-6">
+        <Skeleton className="h-8 w-1/3" />
+        <Skeleton className="h-10 w-full max-w-sm" />
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <Card key={i}>
+              <CardHeader>
+                <Skeleton className="h-5 w-3/4 mb-2" />
+                <Skeleton className="h-4 w-full" />
+              </CardHeader>
+              <CardContent>
+                <Skeleton className="h-4 w-1/2 mb-2" />
+                <Skeleton className="h-2 w-full" />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -144,59 +181,71 @@ export default function ProjectsPage() {
         </Select>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project) => (
-          <Card key={project.id} className="hover:shadow-md transition-shadow">
-            <CardHeader>
-              <div className="flex items-start justify-between">
-                <div className="space-y-1">
-                  <CardTitle className="text-lg">{project.name}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    {project.description}
-                  </p>
-                </div>
-                <Button variant="ghost" size="icon" className="h-8 w-8">
-                  <MoreHorizontal className="h-4 w-4" />
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="flex items-center gap-2">
-                  <Badge
-                    variant="secondary"
-                    className={statusColors[project.status]}
-                  >
-                    {project.status}
-                  </Badge>
-                  <Badge
-                    variant="secondary"
-                    className={priorityColors[project.priority]}
-                  >
-                    {project.priority}
-                  </Badge>
-                  <span className="text-sm text-muted-foreground ml-auto">
-                    Due {project.dueDate}
-                  </span>
-                </div>
-                <div>
-                  <div className="flex justify-between text-sm mb-1">
-                    <span className="text-muted-foreground">Progress</span>
-                    <span>{project.progress}%</span>
+      {projects.length === 0 ? (
+        <Card>
+          <CardHeader>
+            <CardTitle>No projects yet</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground">
+              There are no projects to display. Create a new project to get started.
+            </p>
+          </CardContent>
+        </Card>
+      ) : (
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project) => (
+            <Card key={project.id} className="hover:shadow-md transition-shadow">
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <div className="space-y-1">
+                    <CardTitle className="text-lg">{project.name}</CardTitle>
+                    <p className="text-sm text-muted-foreground">
+                      {project.description}
+                    </p>
                   </div>
-                  <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-primary rounded-full transition-all"
-                      style={{ width: `${project.progress}%` }}
-                    />
+                  <Button variant="ghost" size="icon" className="h-8 w-8">
+                    <MoreHorizontal className="h-4 w-4" />
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2">
+                    <Badge
+                      variant="secondary"
+                      className={statusColors[project.status]}
+                    >
+                      {project.status}
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className={priorityColors[project.priority]}
+                    >
+                      {project.priority}
+                    </Badge>
+                    <span className="text-sm text-muted-foreground ml-auto">
+                      Due {project.dueDate}
+                    </span>
+                  </div>
+                  <div>
+                    <div className="flex justify-between text-sm mb-1">
+                      <span className="text-muted-foreground">Progress</span>
+                      <span>{project.progress}%</span>
+                    </div>
+                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-primary rounded-full transition-all"
+                        style={{ width: `${project.progress}%` }}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
-```
